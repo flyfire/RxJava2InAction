@@ -30,4 +30,11 @@ fun main() {
     println("atomic = ${atomicLong.get()}, virtual time: ${scheduler.now(TimeUnit.SECONDS)}")
     scheduler.advanceTimeBy(1, TimeUnit.SECONDS)
     println("atomic = ${atomicLong.get()}, virtual time: ${scheduler.now(TimeUnit.SECONDS)}")
+
+    println("----------------------------")
+
+    val testScheduler = TestScheduler()
+    testScheduler.createWorker().schedule {
+        "${Thread.currentThread().name} - virtual time: ${testScheduler.now(TimeUnit.SECONDS)}"
+    }
 }
