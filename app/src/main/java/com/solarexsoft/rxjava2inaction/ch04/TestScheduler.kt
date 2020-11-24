@@ -35,6 +35,12 @@ fun main() {
 
     val testScheduler = TestScheduler()
     testScheduler.createWorker().schedule {
-        "${Thread.currentThread().name} - virtual time: ${testScheduler.now(TimeUnit.SECONDS)}"
+        println("${Thread.currentThread().name} - virtual time: ${testScheduler.now(TimeUnit.SECONDS)}")
     }
+    testScheduler.createWorker().schedule({
+        println("${Thread.currentThread().name} - virtual time: ${testScheduler.now(TimeUnit.SECONDS)}")
+    }, 20, TimeUnit.SECONDS)
+    println("${Thread.currentThread().name} - virtual time: ${testScheduler.now(TimeUnit.SECONDS)}")
+    testScheduler.advanceTimeBy(20, TimeUnit.SECONDS)
+    testScheduler.triggerActions()
 }
