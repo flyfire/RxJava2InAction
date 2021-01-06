@@ -15,7 +15,7 @@ fun main() {
             println("onSubscribe ${Thread.currentThread().name} ${System.currentTimeMillis()}")
         }.doOnSuccess {
             println("onSuccess ${Thread.currentThread().name} ${System.currentTimeMillis()}")
-        }.subscribeOn(Schedulers.io())
+        }
         .subscribe()
     Thread.sleep(6000)
 }
